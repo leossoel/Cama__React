@@ -21,9 +21,6 @@ const config: Config = {
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
-    require('@headlessui/react'),
-    require('@heroicons/react/24/outline')
-  
   ],
 }
 export default config

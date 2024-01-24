@@ -7,9 +7,6 @@ export default function Example() {
 
    async function createCama(formData: FormData) {
       'use server'
-      // let alto = formData.append('height', formData.get('height')!);
-
-      // console.log(alto)
 
       let json = JSON.stringify({
          name: formData.get('name'),
@@ -19,6 +16,8 @@ export default function Example() {
          depth: formData.get('depth'),
          unit: formData.get('unit'),
          price: formData.get('price'),
+         currency: formData.get('currency'),
+         material: formData.get('material'),
          color: formData.get('color'),
 
       });
@@ -49,15 +48,13 @@ export default function Example() {
    return ( 
       <form action={createCama}  method='post'   className='bg-white my-[40px] mx-96 p-[40px]' >
          <div className="space-y-12">
-
-
-
+            
             <div className="border-b border-gray-900/10 pb-12">
                <h2 className="text-base font-semibold leading-7 text-gray-900">Crear nueva cama</h2>
                <p className="mt-1 text-sm leading-6 text-gray-600">Ingresa los datos en los campos.</p>
 
                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                  <div className="sm:col-span-3">
+                  <div className="sm:col-span-2">
                      <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
                         Nombre de la cama:
                      </label>
@@ -72,7 +69,7 @@ export default function Example() {
                      </div>
                   </div>
 
-                  <div className="sm:col-span-3">
+                  <div className="sm:col-span-2">
                      <label htmlFor="model" className="block text-sm font-medium leading-6 text-gray-900">
                         Modelo:
                      </label>
@@ -81,6 +78,21 @@ export default function Example() {
                            type="text"
                            name="model"
                            id="model"
+                           autoComplete="off"
+                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                     </div>
+                  </div>
+
+                  <div className="sm:col-span-2">
+                     <label htmlFor="material" className="block text-sm font-medium leading-6 text-gray-900">
+                        Material:
+                     </label>
+                     <div className="mt-2">
+                        <input
+                           type="text"
+                           name="material"
+                           id="material"
                            autoComplete="off"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
@@ -157,8 +169,8 @@ export default function Example() {
                            className="w-[82%] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                         <select
-                           id="divisa"
-                           name="divisa"
+                           id="currency"
+                           name="currency"
                            autoComplete="off"
                            className="w-[18%] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                            <option>MXN</option>

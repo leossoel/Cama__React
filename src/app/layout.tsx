@@ -18,6 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
         <body>
+        <nav className='bg-black'>
+          <a href="/cama/add">Agregar Cama</a><br></br>
+          <a href="/camas">lista de camas</a>
+        </nav>
         {children}
         </body>
     </html>

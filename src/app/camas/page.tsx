@@ -43,11 +43,13 @@ interface Cama {
     "name": string,
     "model": string,
     "width": number,
-    "heigth": number,
+    "height": number,
     "depth": number,
+    "unit": string,
     "price": number,
+    "currency": string,
+    "material": string,
     "color": string,
-    "ext": string,
     "active": boolean,
 }
 
@@ -60,8 +62,8 @@ export default async function Camas() {
     if (!response.ok) {
         return <p>Error</p>
     }
-
     const camas: Array<Cama> = await response.json();
+    console.log(camas)
 
     return (
         <div className="bg-white">
@@ -82,17 +84,20 @@ export default async function Camas() {
                             <div className="mt-4 flex justify-between">
                                 <div>
                                     <h3 className="text-sm text-gray-700">
-                                        <a href={`localhost:3000/cama/${cama.id}`}>
+                                        <a href={`http://192.168.100.19:3000/cama/${cama.id}`}>
                                             <span aria-hidden="true" className="absolute inset-0" />
-                                            {cama.name}
                                         </a>
                                     </h3>
-                                    <p className="mt-1 text-sm text-gray-500">{cama.model}</p>
-                                    <p className="mt-1 text-sm text-gray-500">Dimensiones: {cama.width}cm x {cama.heigth}cm x {cama.depth}cm</p>
+                                    <p className="mt-1 text-sm text-gray-500">Modelo: {cama.model}</p>
+                                    <p className="text-sm font-medium text-gray-900">Material:{cama.material}</p>
 
-                                    <p className="mt-1 text-sm text-gray-500">{cama.color}</p>
+                                    <p className="mt-1 text-sm text-gray-500">Color: {cama.color}</p>
                                 </div>
-                                <p className="text-sm font-medium text-gray-900">{cama.price} USD</p>
+                                <div>
+                                    <p className="mt-1 text-sm text-gray-500">Dimensiones: <br></br>{cama.width}{cama.unit} x {cama.height}{cama.unit} x {cama.depth}{cama.unit}</p>
+                                    <br></br>
+                                    <p className="text-sm font-medium text-gray-900">{cama.price}{cama.currency}</p>
+                                </div>
                             </div>
                         </div>
                     ))}
