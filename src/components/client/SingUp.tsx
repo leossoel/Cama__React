@@ -25,3 +25,4 @@ async function CreatePersonal(formData: FormData) {
     return response.json();
 }
 export default CreatePersonal;
+// buenas tardes

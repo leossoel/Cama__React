@@ -7,14 +7,13 @@ interface ClientTokenProps {
 
 const ClientToken: React.FC<ClientTokenProps> = ({ dataToken }) => {
     useEffect(() => {
-        // Usa dataToken según sea necesario
         console.log('Token recibido:', dataToken);
 
-        // Ejemplo de uso: guardar en el localStorage
+      
         localStorage.setItem('dataToken', JSON.stringify(dataToken));
     }, [dataToken]);
 
-    return null; // No renderiza ningún elemento HTML
+    return null; 
 };
 
 export default ClientToken;
