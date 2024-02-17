@@ -25,25 +25,21 @@ export default function Example() {
       let body = new FormData  
       body.append('json', json);
       body.append('image', formData.get('image')!);
-
-      console.log(body)
-
+      
       const response = await fetch('http://localhost:3001/cama', {
          body,
          method: 'POST',
          cache: 'no-store',
       })
 
-      console.log("sadasd")
-
       if(!response.ok){
-         return "sexxxxxxxoooooo"
+         return;
       }
 
       const id = await response.json();
       console.log(id)
       redirect("http://localhost:3000/camas")
-   }
+   };
 
    return ( 
       <form action={createCama}  method='post'   className='bg-white my-[40px] mx-96 p-[40px]' >

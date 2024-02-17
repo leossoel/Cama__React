@@ -1,4 +1,27 @@
+'use client'
+import SingIn from "@/components/client/singIn"
+import ClientToken from "@/components/client/jwToken"
+import React, { useState } from 'react';
+
+
+
+
 export default function Example() {
+  const [dataToken, setDataToken] = useState<any>(null);
+
+  const form = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      
+      const formData = new FormData(event.currentTarget);
+      const token = await SingIn(formData);
+      
+      if (token) {
+          setDataToken(token);
+      }
+
+      window.location.href = "http://192.168.100.19:3000/user/personal/home"
+  };
+
     return (
       <>
         <div className="bg-white flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -14,15 +37,15 @@ export default function Example() {
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-6" onSubmit={form} method="post">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="e_mail" className="block text-sm font-medium leading-6 text-gray-900">
                   Correo electronico
                 </label>
                 <div className="mt-2">
                   <input
-                    id="email"
-                    name="email"
+                    id="e_mail"
+                    name="e_mail"
                     type="email"
                     autoComplete="email"
                     required
@@ -66,12 +89,13 @@ export default function Example() {
   
             <p className="mt-10 text-center text-sm text-gray-500">
               No tiene cuenta?{' '}
-              <a href="http://192.168.100.19:3000/user/personal/sing.Up" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              <a href="http://192.168.100.19:3000/user/personal/singUp" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                 Crear cuenta
               </a>
             </p>
           </div>
         </div>
+        {dataToken && <ClientToken dataToken={dataToken} />}
       </>
     )
   }
